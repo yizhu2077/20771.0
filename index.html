@@ -23,15 +23,12 @@
             --glow-cyan: rgba(0, 221, 255, 0.3);
             --font-title: 'Orbitron', 'Segoe UI', 'Microsoft YaHei', sans-serif;
             --font-body: 'Rajdhani', 'Segoe UI', 'Microsoft YaHei', sans-serif;
-            --transition-smooth: 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
         }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             background: var(--bg-abyss);
             font-family: var(--font-body);
@@ -43,7 +40,6 @@
             overflow-x: hidden;
             position: relative;
         }
-
         body::before {
             content: '';
             position: fixed;
@@ -89,7 +85,6 @@
                 background-position: 40px -20px, -30px 30px, 20px -10px, -15px 25px, 35px 15px, -25px -30px, 10px 20px;
             }
         }
-
         .scanlines {
             position: fixed;
             top: 0;
@@ -104,7 +99,6 @@
                     rgba(0, 0, 0, 0.028) 2px,
                     rgba(0, 0, 0, 0.028) 4px);
         }
-
         .app-container {
             width: 100%;
             max-width: 960px;
@@ -116,7 +110,6 @@
             position: relative;
             z-index: 1;
         }
-
         .stage {
             display: none;
             width: 100%;
@@ -137,7 +130,6 @@
                 transform: translateY(0);
             }
         }
-
         .top-bar {
             display: flex;
             justify-content: space-between;
@@ -172,7 +164,6 @@
             color: var(--neon-cyan);
             text-shadow: 0 0 10px var(--glow-cyan);
         }
-
         .main-panel {
             background: linear-gradient(160deg,
                     rgba(12, 14, 22, 0.92) 0%,
@@ -195,7 +186,6 @@
             background: #252a3d;
             border-radius: 3px;
         }
-
         .narrative-box {
             background: rgba(8, 10, 18, 0.7);
             border: 1px solid var(--border-subtle);
@@ -215,7 +205,6 @@
             color: var(--neon-amber);
             font-style: normal;
         }
-
         .choices-grid {
             display: flex;
             flex-direction: column;
@@ -247,7 +236,23 @@
             color: var(--neon-pink);
             font-family: var(--font-title);
         }
-
+        .btn-back-step {
+            background: transparent;
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            font-family: var(--font-title);
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            padding: 8px 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-back-step:hover {
+            border-color: var(--neon-cyan);
+            color: var(--neon-cyan);
+            box-shadow: 0 0 16px var(--glow-cyan);
+        }
         .btn-continue {
             display: block;
             width: 100%;
@@ -269,8 +274,76 @@
             color: #000;
             box-shadow: 0 0 40px var(--glow-cyan);
         }
-
-        /* 意识海特殊样式 */
+        .btn-continue:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+        .option-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 14px;
+        }
+        .option-grid.cols-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .option-grid.cols-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .option-grid.cols-4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+        .option-card {
+            background: linear-gradient(160deg,
+                    rgba(14, 16, 26, 0.8) 0%,
+                    rgba(16, 19, 30, 0.8) 100%);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            padding: 20px 18px;
+            cursor: pointer;
+            transition: all 0.35s;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        .option-card:hover {
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 30px rgba(255, 26, 77, 0.15);
+            transform: translateY(-3px);
+        }
+        .option-card .card-title {
+            font-family: var(--font-title);
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+        .option-card .card-desc {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            letter-spacing: 1px;
+            line-height: 1.6;
+        }
+        .option-card .card-icon {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+        .section-label {
+            font-family: var(--font-title);
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            color: var(--neon-cyan);
+            margin: 20px 0 12px;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            background: var(--neon-pink);
+            border-radius: 50%;
+            box-shadow: 0 0 12px var(--glow-pink);
+            display: inline-block;
+            margin-right: 8px;
+        }
         .matrix-bg {
             background: #000;
             color: #0f0;
@@ -318,7 +391,13 @@
                 transform: translate(30px, -20px);
             }
         }
-
+        .color-dot {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            margin: 0 auto 8px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
         @media (max-width: 700px) {
             .app-container {
                 padding: 16px;
@@ -327,9 +406,8 @@
                 padding: 20px;
                 max-height: 60vh;
             }
-            .narrative-box {
-                font-size: 0.8rem;
-                padding: 16px;
+            .option-grid {
+                grid-template-columns: 1fr 1fr;
             }
         }
     </style>
@@ -339,47 +417,119 @@
     <div class="scanlines"></div>
     <div class="app-container" id="appContainer">
 
-        <!-- 阶段：主菜单 -->
+        <!-- ==================== 主菜单 ==================== -->
         <div class="stage active" id="stage-menu">
             <div class="top-bar"><span class="step-indicator"><span class="step-active">◆ 主菜单</span></span><span style="font-family:var(--font-title);font-size:0.7rem;letter-spacing:3px;color:var(--neon-pink);">欲之城 2077 · DEMO</span></div>
             <div class="main-panel" style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:24px;">
-                <h2 style="font-family:var(--font-title);color:var(--neon-cyan);letter-spacing:6px;text-shadow:0 0 14px var(--glow-cyan);"><span style="color:var(--neon-pink);">◆</span> 主 菜 单</h2>
+                <h2 style="font-family:var(--font-title);color:var(--neon-cyan);letter-spacing:6px;text-shadow:0 0 14px var(--glow-cyan);"><span class="dot"></span>主 菜 单</h2>
                 <p style="color:var(--text-secondary);letter-spacing:1px;max-width:500px;">欢迎来到<strong>欲之城 2077</strong>试玩版。<br>本Demo包含序章剧情与角色创建，正式版将开放完整游戏。</p>
                 <button class="btn-continue" style="max-width:280px;" onclick="goToStage('stage-prologue')">◆ 开 始 游 戏 ◆</button>
                 <p style="color:var(--text-dim);font-size:0.6rem;letter-spacing:2px;">⚠ 十八禁内容 · 未成年禁止入内 （作者除外）</p>
             </div>
         </div>
 
-        <!-- 阶段：序章剧情 -->
+        <!-- ==================== 序章 ==================== -->
         <div class="stage" id="stage-prologue">
-            <div class="top-bar"><span class="step-indicator"><span style="color:var(--text-dim);">主菜单</span> <span class="step-active">▸ 序章</span></span></div>
-            <div class="main-panel" id="prologuePanel">
-                <!-- 动态填充 -->
-            </div>
+            <div class="top-bar"><span class="step-indicator"><span style="color:var(--text-dim);">主菜单</span> ▸ <span class="step-active">序章</span></span></div>
+            <div class="main-panel" id="prologuePanel"></div>
         </div>
 
-        <!-- 阶段：捏人-性别（从序章结束后跳转过来） -->
+        <!-- ==================== 捏人-性别 ==================== -->
         <div class="stage" id="stage-gender">
-            <div class="top-bar"><span class="step-indicator"><span style="color:var(--text-dim);">序章</span> <span class="step-active">▸ 角色创建</span></span></div>
+            <div class="top-bar"><span class="step-indicator"><span style="color:var(--text-dim);">序章</span> ▸ <span class="step-active">角色创建</span></span></div>
             <div class="main-panel" style="text-align:center;">
-                <h2 style="font-family:var(--font-title);color:var(--neon-cyan);"><span style="color:var(--neon-pink);">◆</span> 第一步 · 选择性别</h2>
+                <h2 style="font-family:var(--font-title);color:var(--neon-cyan);letter-spacing:6px;"><span class="dot"></span>第一步 · 选择性别</h2>
                 <p style="color:var(--text-secondary);margin-bottom:24px;">你站在镜子前，看着这具尚未被义体改造的身体。<br>2076年的自己，还保留着最原始的样貌。</p>
                 <div style="display:flex;gap:14px;justify-content:center;margin-bottom:24px;">
-                    <div class="choice-btn" id="genderMale" onclick="selectGender('male')" style="flex:1;max-width:200px;text-align:center;">♂ 男 性</div>
-                    <div class="choice-btn" id="genderFemale" onclick="selectGender('female')" style="flex:1;max-width:200px;text-align:center;">♀ 女 性</div>
+                    <div class="choice-btn" id="genderMale" onclick="selectGender('male')" style="flex:1;max-width:200px;text-align:center;justify-content:center;">♂ 男 性</div>
+                    <div class="choice-btn" id="genderFemale" onclick="selectGender('female')" style="flex:1;max-width:200px;text-align:center;justify-content:center;">♀ 女 性</div>
                 </div>
                 <button class="btn-continue" onclick="goToStage('stage-hair')">继续 ▸</button>
             </div>
         </div>
 
-        <!-- 后续捏人阶段（stage-hair, stage-clothes, stage-colors, stage-body, stage-eyes, stage-personality, stage-review）与之前相同，此处省略以节省篇幅，实际代码中保留 -->
-        <div class="stage" id="stage-hair"><div class="top-bar"><span class="step-indicator"><span style="color:var(--text-dim);">性别</span> ▸ <span class="step-active">发型</span></span><button class="btn-back-step" onclick="goToStage('stage-gender')">↩ 返回</button></div><div class="main-panel"><h2><span class="dot"></span>第二步 · 选择发型</h2><div class="narrative-box" id="hairNarrative">你伸手捋了捋头发...</div><div class="option-grid cols-3" id="hairOptions"></div><button class="btn-continue" id="btnHairNext" disabled onclick="goToStage('stage-clothes')">继续 ▸</button></div></div>
-        <div class="stage" id="stage-clothes"><div class="top-bar"><span class="step-indicator"><span style="color:var(--text-dim);">发型</span> ▸ <span class="step-active">衣服</span></span><button class="btn-back-step" onclick="goToStage('stage-hair')">↩ 返回</button></div><div class="main-panel"><h2><span class="dot"></span>第三步 · 选择衣着</h2><div class="narrative-box" id="clothesNarrative">衣柜门吱呀一声打开...</div><div class="option-grid cols-2" id="clothesOptions"></div><button class="btn-continue" id="btnClothesNext" disabled onclick="goToStage('stage-colors')">继续 ▸</button></div></div>
-        <div class="stage" id="stage-colors"><div class="top-bar"><span class="step-indicator"><span style="color:var(--text-dim);">衣服</span> ▸ <span class="step-active">颜色</span></span><button class="btn-back-step" onclick="goToStage('stage-clothes')">↩ 返回</button></div><div class="main-panel"><h2><span class="dot"></span>第四步 · 眼睛与发色</h2><div class="narrative-box" id="colorNarrative">你凑近镜子...</div><p style="font-family:var(--font-title);font-size:0.7rem;letter-spacing:3px;color:var(--neon-cyan);margin-bottom:12px;">👁 眼睛颜色</p><div class="option-grid cols-3" id="eyeColorOptions"></div><p style="font-family:var(--font-title);font-size:0.7rem;letter-spacing:3px;color:var(--neon-cyan);margin:20px 0 12px;">💇 头发颜色</p><div class="option-grid cols-3" id="hairColorOptions"></div><button class="btn-continue" id="btnColorsNext" disabled onclick="goToStage('stage-body')">继续 ▸</button></div></div>
-        <div class="stage" id="stage-body"><div class="top-bar"><span class="step-indicator"><span style="color:var(--text-dim);">颜色</span> ▸ <span class="step-active">身体</span></span><button class="btn-back-step" onclick="goToStage('stage-colors')">↩ 返回</button></div><div class="main-panel"><h2><span class="dot"></span>第五步 · 身体特征</h2><div class="narrative-box" id="bodyNarrative">你低头打量...</div><p style="font-family:var(--font-title);font-size:0.7rem;letter-spacing:3px;color:var(--neon-cyan);margin-bottom:12px;" id="bodyPartLabel">身体特征</p><div class="option-grid cols-4" id="bodyOptions"></div><p style="font-family:var(--font-title);font-size:0.7rem;letter-spacing:3px;color:var(--neon-cyan);margin:20px 0 12px;">📏 身高</p><div class="option-grid cols-3" id="heightOptions"></div><button class="btn-continue" id="btnBodyNext" disabled onclick="goToStage('stage-eyes')">继续 ▸</button></div></div>
-        <div class="stage" id="stage-eyes"><div class="top-bar"><span class="step-indicator"><span style="color:var(--text-dim);">身体</span> ▸ <span class="step-active">眼型</span></span><button class="btn-back-step" onclick="goToStage('stage-body')">↩ 返回</button></div><div class="main-panel"><h2><span class="dot"></span>第六步 · 眼型</h2><div class="narrative-box" id="eyeShapeNarrative">眼睛是灵魂的窗户...</div><div class="option-grid cols-3" id="eyeShapeOptions"></div><button class="btn-continue" id="btnEyesNext" disabled onclick="goToStage('stage-personality')">继续 ▸</button></div></div>
-        <div class="stage" id="stage-personality"><div class="top-bar"><span class="step-indicator"><span style="color:var(--text-dim);">眼型</span> ▸ <span class="step-active">性格</span></span><button class="btn-back-step" onclick="goToStage('stage-eyes')">↩ 返回</button></div><div class="main-panel"><h2><span class="dot"></span>第七步 · 性格特质</h2><div class="narrative-box">在欲之城，性格决定你的生存策略...</div><div class="option-grid cols-2" id="personalityOptions"></div><button class="btn-continue" id="btnPersonalityNext" disabled onclick="goToStage('stage-review')">继续 ▸</button></div></div>
-        <div class="stage" id="stage-review"><div class="top-bar"><span class="step-indicator"><span class="step-active">确认角色</span></span><button class="btn-back-step" onclick="goToStage('stage-personality')">↩ 返回</button></div><div class="main-panel"><h2><span class="dot"></span>角色总览</h2><div class="narrative-box" id="reviewNarrative">一切就绪。</div><div style="background:rgba(14,16,26,0.6);border:1px solid var(--border-subtle);border-radius:8px;padding:20px;font-size:0.8rem;line-height:2;color:var(--text-secondary);" id="reviewDetails"></div><button class="btn-continue" onclick="finishDemo()">◆ 踏入欲之城 ◆</button></div></div>
+        <!-- ==================== 捏人-发型 ==================== -->
+        <div class="stage" id="stage-hair">
+            <div class="top-bar"><span class="step-indicator"><span style="color:var(--text-dim);">性别</span> ▸ <span class="step-active">发型</span></span><button class="btn-back-step" onclick="goToStage('stage-gender')">↩ 返回</button></div>
+            <div class="main-panel">
+                <h2 style="font-family:var(--font-title);color:var(--neon-cyan);letter-spacing:6px;"><span class="dot"></span>第二步 · 选择发型</h2>
+                <div class="narrative-box" id="hairNarrative">你伸手捋了捋头发，指尖穿过发丝的触感真实得令人恍惚。镜中的自己看起来如此年轻，像是另一个人。</div>
+                <div class="option-grid cols-3" id="hairOptions"></div>
+                <button class="btn-continue" id="btnHairNext" disabled onclick="goToStage('stage-clothes')">继续 ▸</button>
+            </div>
+        </div>
+
+        <!-- ==================== 捏人-衣服 ==================== -->
+        <div class="stage" id="stage-clothes">
+            <div class="top-bar"><span class="step-indicator"><span style="color:var(--text-dim);">发型</span> ▸ <span class="step-active">衣服</span></span><button class="btn-back-step" onclick="goToStage('stage-hair')">↩ 返回</button></div>
+            <div class="main-panel">
+                <h2 style="font-family:var(--font-title);color:var(--neon-cyan);letter-spacing:6px;"><span class="dot"></span>第三步 · 选择衣着</h2>
+                <div class="narrative-box" id="clothesNarrative">衣柜门吱呀一声打开，里面挂着寥寥几件衣服。这具身体的前主人，品味如何？</div>
+                <div class="option-grid cols-2" id="clothesOptions"></div>
+                <button class="btn-continue" id="btnClothesNext" disabled onclick="goToStage('stage-colors')">继续 ▸</button>
+            </div>
+        </div>
+
+        <!-- ==================== 捏人-颜色 ==================== -->
+        <div class="stage" id="stage-colors">
+            <div class="top-bar"><span class="step-indicator"><span style="color:var(--text-dim);">衣服</span> ▸ <span class="step-active">颜色</span></span><button class="btn-back-step" onclick="goToStage('stage-clothes')">↩ 返回</button></div>
+            <div class="main-panel">
+                <h2 style="font-family:var(--font-title);color:var(--neon-cyan);letter-spacing:6px;"><span class="dot"></span>第四步 · 眼睛与发色</h2>
+                <div class="narrative-box" id="colorNarrative">你凑近镜子，仔细端详这双眼睛的颜色。在这个时代，瞳色和发色是最廉价的自我表达。</div>
+                <p class="section-label">👁 眼睛颜色</p>
+                <div class="option-grid cols-3" id="eyeColorOptions"></div>
+                <p class="section-label">💇 头发颜色</p>
+                <div class="option-grid cols-3" id="hairColorOptions"></div>
+                <button class="btn-continue" id="btnColorsNext" disabled onclick="goToStage('stage-body')">继续 ▸</button>
+            </div>
+        </div>
+
+        <!-- ==================== 捏人-身体 ==================== -->
+        <div class="stage" id="stage-body">
+            <div class="top-bar"><span class="step-indicator"><span style="color:var(--text-dim);">颜色</span> ▸ <span class="step-active">身体</span></span><button class="btn-back-step" onclick="goToStage('stage-colors')">↩ 返回</button></div>
+            <div class="main-panel">
+                <h2 style="font-family:var(--font-title);color:var(--neon-cyan);letter-spacing:6px;"><span class="dot"></span>第五步 · 身体特征</h2>
+                <div class="narrative-box" id="bodyNarrative">你低头打量自己的身体。这具躯壳的每一寸，都将在欲之城里成为筹码或弱点。</div>
+                <p class="section-label" id="bodyPartLabel">身体特征</p>
+                <div class="option-grid cols-4" id="bodyOptions"></div>
+                <p class="section-label">📏 身高</p>
+                <div class="option-grid cols-3" id="heightOptions"></div>
+                <button class="btn-continue" id="btnBodyNext" disabled onclick="goToStage('stage-eyes')">继续 ▸</button>
+            </div>
+        </div>
+
+        <!-- ==================== 捏人-眼型 ==================== -->
+        <div class="stage" id="stage-eyes">
+            <div class="top-bar"><span class="step-indicator"><span style="color:var(--text-dim);">身体</span> ▸ <span class="step-active">眼型</span></span><button class="btn-back-step" onclick="goToStage('stage-body')">↩ 返回</button></div>
+            <div class="main-panel">
+                <h2 style="font-family:var(--font-title);color:var(--neon-cyan);letter-spacing:6px;"><span class="dot"></span>第六步 · 眼型</h2>
+                <div class="narrative-box" id="eyeShapeNarrative">眼睛是灵魂的窗户。在这座城市里，窗户上最好装上铁栅栏。</div>
+                <div class="option-grid cols-3" id="eyeShapeOptions"></div>
+                <button class="btn-continue" id="btnEyesNext" disabled onclick="goToStage('stage-personality')">继续 ▸</button>
+            </div>
+        </div>
+
+        <!-- ==================== 捏人-性格 ==================== -->
+        <div class="stage" id="stage-personality">
+            <div class="top-bar"><span class="step-indicator"><span style="color:var(--text-dim);">眼型</span> ▸ <span class="step-active">性格</span></span><button class="btn-back-step" onclick="goToStage('stage-eyes')">↩ 返回</button></div>
+            <div class="main-panel">
+                <h2 style="font-family:var(--font-title);color:var(--neon-cyan);letter-spacing:6px;"><span class="dot"></span>第七步 · 性格特质</h2>
+                <div class="narrative-box">在欲之城，性格决定你的生存策略。是选择顺从，还是反抗？是冷眼旁观，还是投身其中？</div>
+                <div class="option-grid cols-2" id="personalityOptions"></div>
+                <button class="btn-continue" id="btnPersonalityNext" disabled onclick="goToStage('stage-review')">继续 ▸</button>
+            </div>
+        </div>
+
+        <!-- ==================== 角色总览 ==================== -->
+        <div class="stage" id="stage-review">
+            <div class="top-bar"><span class="step-indicator"><span style="color:var(--text-dim);">性格</span> ▸ <span class="step-active">确认角色</span></span><button class="btn-back-step" onclick="goToStage('stage-personality')">↩ 返回</button></div>
+            <div class="main-panel">
+                <h2 style="font-family:var(--font-title);color:var(--neon-cyan);letter-spacing:6px;"><span class="dot"></span>角色总览</h2>
+                <div class="narrative-box" id="reviewNarrative">一切就绪。镜中的这个人，将踏入欲之城的深渊。</div>
+                <div style="background:rgba(14,16,26,0.6);border:1px solid var(--border-subtle);border-radius:8px;padding:20px;font-size:0.8rem;line-height:2;color:var(--text-secondary);" id="reviewDetails"></div>
+                <button class="btn-continue" onclick="finishDemo()">◆ 踏入欲之城 ◆</button>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -394,8 +544,118 @@
             height: null,
             eyeShape: null,
             personality: null,
-            prologueFlags: {} // 序章中的一些选择标记
         };
+
+        // ==================== 捏人数据 ====================
+        const hairData = {
+            male: [
+                { id: 'm_hair1', name: '精干寸头', desc: '公司标配发型，每一根发丝都被纪律约束。',
+                    narrative: '你摸了摸头顶，短硬的发茬扎在手心。这种发型不需要打理，也意味着你没有打理自己的自由。' },
+                { id: 'm_hair2', name: '侧分油头', desc: '老派绅士的遗风，在夜之城这种复古反而显得危险。',
+                    narrative: '你拿起那把破旧的梳子，将头发一丝不苟地梳向右边。发油的廉价香味在空气中弥散。' },
+                { id: 'm_hair3', name: '凌乱碎发', desc: '不修边幅的短发，看起来像刚从一场斗殴中脱身。',
+                    narrative: '你用手指胡乱拨弄了几下头发，让它保持恰到好处的凌乱。太过整齐的发型在街头会招来不必要的注意。' },
+                { id: 'm_hair4', name: '莫西干', desc: '叛逆者的标志，在帮派地盘这个发型就是一份声明。',
+                    narrative: '你摩挲着两侧剃得发青的头皮，感受着中间那道发脊的弧度。每一次触摸都像在提醒自己——你不是公司的奴隶。' },
+                { id: 'm_hair5', name: '中长发束', desc: '齐肩的长发在后颈扎成小束，在夜之城既不显眼也不平庸。',
+                    narrative: '你拢起后颈的头发，用一根旧皮筋扎紧。几缕不听话的发丝从额前滑落，你也懒得再管。' },
+            ],
+            female: [
+                { id: 'f_hair1', name: '长直发', desc: '瀑布般垂落的乌黑长直发，在霓虹灯下泛着冷光。',
+                    narrative: '你拿起梳子，从发根梳到发梢，发丝在指尖滑过的触感细腻而熟悉。镜中的自己看起来像一幅静止的画。' },
+                { id: 'f_hair2', name: '齐耳短发', desc: '干练的短发垂到耳际，透着一股不拖泥带水的果断。',
+                    narrative: '你对着镜子将鬓角的碎发别到耳后，露出清晰的颌骨线条。短发让整个人的气质都锐利了几分。' },
+                { id: 'f_hair3', name: '单侧剃发', desc: '一侧长发垂肩，另一侧剃得露出头皮。危险的性感。',
+                    narrative: '你歪着头审视镜中的自己，手指轻轻划过剃发那一侧的青色发茬。不对称的发型像在宣告：我不是好惹的。' },
+                { id: 'f_hair4', name: '长卷发', desc: '蓬松的大波浪卷发，每一缕卷曲都带着慵懒的诱惑。',
+                    narrative: '你用手指卷起一缕发丝，感受着它的弹性与弧度。卷发让镜子里的脸庞看起来柔和了几分，但你知道那只是假象。' },
+                { id: 'f_hair5', name: '高马尾', desc: '所有头发高高束起，发梢在空中划出锐利的弧度。',
+                    narrative: '你用力将头发拢到头顶，皮筋在指尖绷紧。马尾扎好的那一刻，整个人的精神都为之一振。' },
+            ],
+        };
+
+        const clothesData = {
+            male: [
+                { id: 'm_suit1', name: '荒坂标准西装', desc: '深灰色合成纤维，左胸绣着荒坂徽记。穿上它，你就是公司的一枚螺丝钉。',
+                    narrative: '你穿上那件笔挺的西装外套，肩膀处紧绷的线条让你不由自主地挺直了脊背。这身衣服就是一个笼子——只不过笼子里的鸟已经习惯了。' },
+                { id: 'm_suit2', name: '黑色暗纹西装', desc: '全黑面料，在光线下隐约能看到暗色条纹。多了几分个人风格。',
+                    narrative: '你扣上袖口的纽扣，黑色的面料吸收了房间里的光线。这套西装比公司发的要好——这是你自己买的，用奖金。在荒坂，一点点的不同就是巨大的奢侈。' },
+            ],
+            female: [
+                { id: 'f_dress', name: '公司女长裙', desc: '及膝的铅灰色铅笔裙，搭配同色系收腰外套。优雅而克制。',
+                    narrative: '你拉上侧面的拉链，裙身完美贴合你的腰线。镜子里的女人看起来无懈可击——但这身衣服下面的身体，早已千疮百孔。' },
+                { id: 'f_pants', name: '公司女长裤', desc: '高腰直筒长裤，裤线锋利得可以割伤手指。实用主义的体现。',
+                    narrative: '你系好腰带，感受着裤装带来的行动自由。比起裙子，长裤让你觉得更有掌控感——尽管那种掌控感只是错觉。' },
+            ],
+        };
+
+        const colorOptions = [
+            { id: 'brown', name: '深棕', desc: '大地般沉稳的色调，在夜之城显得近乎质朴。', colorHex: '#5a3a1a' },
+            { id: 'blue', name: '冰蓝', desc: '冷冽如冬日湖面，带着若有若无的疏离感。', colorHex: '#88bbee' },
+            { id: 'green', name: '翡翠绿', desc: '罕见而引人注目的绿色，在人群中一眼就能被认出。', colorHex: '#44aa66' },
+            { id: 'red', name: '暗红', desc: '像干涸的血迹，危险而暧昧。', colorHex: '#992233' },
+            { id: 'grey', name: '银灰', desc: '介于金属与雾气之间，低调到几乎消失。', colorHex: '#999999' },
+        ];
+
+        const bodyPartData = {
+            male: [
+                { id: 'm_tiny', name: '袖珍小巧', desc: '小小的也很可爱嘛。在以尺寸论英雄的世界里，低调反而是一种智慧。' },
+                { id: 'm_small', name: '含蓄内敛', desc: '不过不失，中规中矩。不会让人失望，也不会让人印象深刻。' },
+                { id: 'm_medium', name: '尺寸可观', desc: '让人眼前一亮的程度。在某些地下俱乐部里，这个尺寸已经可以成为谈资。' },
+                { id: 'm_large', name: '巨物瞩目', desc: '令人瞠目结舌的分量。走在路上都有人侧目，分不清是嫉妒还是好奇。' },
+            ],
+            female: [
+                { id: 'f_flat', name: '一马平川', desc: '小小的也很可爱嘛。在夜之城，有些人偏爱好驾驭的——至少不容易成为累赘。' },
+                { id: 'f_small', name: '盈盈一握', desc: '精致小巧，恰到好处。不大不小，刚好一只手能掌握的弧度。' },
+                { id: 'f_medium', name: '丰满挺拔', desc: '曲线分明，在紧身衣下勾勒出引人注目的轮廓。走在街上回头率不低。' },
+                { id: 'f_large', name: '波涛汹涌', desc: '令人无法忽视的存在感。在夜之城的某些地方，这就是行走的硬通货。' },
+            ],
+        };
+
+        const heightData = {
+            male: [
+                { id: 'm_short', name: '精悍矮个', desc: '不到一米七，子弹打不中低处的目标。' },
+                { id: 'm_avg', name: '中等身材', desc: '一米七五左右，不显眼就是最好的伪装。' },
+                { id: 'm_tall', name: '挺拔高个', desc: '一米八出头，在人群中能轻易看到前方。' },
+                { id: 'm_verytall', name: '鹤立鸡群', desc: '逼近一米九，走到哪里都自带压迫感。' },
+                { id: 'm_giant', name: '巨塔之姿', desc: '超过一米九，没人会主动招惹你。' },
+            ],
+            female: [
+                { id: 'f_petite', name: '娇小玲珑', desc: '不到一米六，小巧得像一只猫。' },
+                { id: 'f_avg', name: '匀称适中', desc: '一米六五左右，标准的身高。' },
+                { id: 'f_tall', name: '修长高挑', desc: '一米七以上，穿高跟鞋时能与大多数男性平视。' },
+                { id: 'f_verytall', name: '模特身材', desc: '一米七八，长腿在夜之城既是武器也是弱点。' },
+                { id: 'f_amazon', name: '亚马逊之姿', desc: '超过一米八，无论男女都不得不仰视。' },
+            ],
+        };
+
+        const eyeShapeData = {
+            male: [
+                { id: 'm_eye1', name: '锐利鹰眼', desc: '眼角微微上扬，目光如刃。' },
+                { id: 'm_eye2', name: '深邃桃花眼', desc: '眼角微垂，带着天然的忧郁。' },
+                { id: 'm_eye3', name: '细长丹凤眼', desc: '眼型狭长，冷峻而不失优雅。' },
+                { id: 'm_eye4', name: '圆润杏眼', desc: '大大的圆形眼睛，像一只警惕的猎物。' },
+                { id: 'm_eye5', name: '疲惫下垂眼', desc: '永远睡不够的样子，在夜之城这是常态。' },
+            ],
+            female: [
+                { id: 'f_eye1', name: '猫眼媚眸', desc: '眼尾上挑，一瞥之间千言万语。' },
+                { id: 'f_eye2', name: '温柔弯月眼', desc: '笑起来弯成两道月牙，温暖得不属于这个世界。' },
+                { id: 'f_eye3', name: '冷艳柳叶眼', desc: '眼型细长，冷若冰霜拒人千里。' },
+                { id: 'f_eye4', name: '无辜小鹿眼', desc: '大而圆的眼眸，让人想保护——或者想欺负。' },
+                { id: 'f_eye5', name: '深邃烟熏眼', desc: '眼窝深陷，像笼罩在一层薄雾之后。' },
+            ],
+        };
+
+        const personalityData = [
+            { id: 'submissive', name: '顺从', emoji: '🤲', desc: '你学会了低头。在强者面前示弱不是软弱，是生存策略。' },
+            { id: 'defiant', name: '反抗', emoji: '✊', desc: '你的脊梁从未真正弯曲。即使在最深的泥沼里，你也会对着天空竖起中指。' },
+            { id: 'calculating', name: '算计', emoji: '🧠', desc: '每一步都经过精密计算。你把每一次交易都变成长期投资。' },
+            { id: 'impulsive', name: '冲动', emoji: '🔥', desc: '你凭本能行事。肾上腺素是唯一的导航仪。' },
+            { id: 'charming', name: '魅力', emoji: '💋', desc: '一个微笑、一个眼神、一次恰到好处的肢体接触——这些都是你的武器。' },
+            { id: 'cold', name: '冷漠', emoji: '❄️', desc: '你已经对太多事情无动于衷。感情是奢侈品。' },
+            { id: 'paranoid', name: '多疑', emoji: '👁️', desc: '你不相信任何人。每一个善意的背后都有潜在的陷阱。' },
+            { id: 'loyal', name: '忠诚', emoji: '🤝', desc: '一旦认定某人，你会用生命去守护。稀有而危险的品质。' },
+        ];
 
         // ==================== 阶段跳转 ====================
         function goToStage(stageId) {
@@ -419,10 +679,212 @@
             if (stageId === 'stage-review') renderReview();
         }
 
-        // ==================== 序章剧情系统 ====================
-        function startPrologue() {
-            showPrologueNode('wake_up');
+        // ==================== 捏人渲染函数 ====================
+        function selectGender(gender) {
+            state.gender = gender;
+            state.hair = null;
+            state.clothes = null;
+            state.eyeColor = null;
+            state.hairColor = null;
+            state.bodyPart = null;
+            state.height = null;
+            state.eyeShape = null;
+            state.personality = null;
+            document.getElementById('genderMale').style.borderColor = gender === 'male' ? 'var(--neon-pink)' : 'var(--border-subtle)';
+            document.getElementById('genderMale').style.boxShadow = gender === 'male' ? '0 0 20px var(--glow-pink)' : 'none';
+            document.getElementById('genderFemale').style.borderColor = gender === 'female' ? 'var(--neon-pink)' : 'var(--border-subtle)';
+            document.getElementById('genderFemale').style.boxShadow = gender === 'female' ? '0 0 20px var(--glow-pink)' :
+                'none';
         }
+
+        function renderHairOptions() {
+            const container = document.getElementById('hairOptions');
+            const data = hairData[state.gender];
+            container.innerHTML = data.map(h => `
+            <div class="option-card" onclick="selectHair('${h.id}', '${h.narrative.replace(/'/g, "\\'")}')" style="${state.hair === h.id ? 'border-color:var(--neon-pink);box-shadow:0 0 20px var(--glow-pink);' : ''}">
+              <div class="card-title">${h.name}</div>
+              <div class="card-desc">${h.desc}</div>
+            </div>`).join('');
+            if (!state.hair) {
+                document.getElementById('hairNarrative').innerHTML =
+                    '你伸手捋了捋头发，指尖穿过发丝的触感真实得令人恍惚。镜中的自己看起来如此年轻，像是另一个人。';
+            }
+        }
+
+        function selectHair(id, narrative) {
+            state.hair = id;
+            document.getElementById('hairNarrative').innerHTML = narrative.replace(/\\'/g, "'");
+            document.getElementById('btnHairNext').disabled = false;
+            renderHairOptions();
+        }
+
+        function renderClothesOptions() {
+            const container = document.getElementById('clothesOptions');
+            const data = clothesData[state.gender];
+            container.innerHTML = data.map(c => `
+            <div class="option-card" onclick="selectClothes('${c.id}', '${c.narrative.replace(/'/g, "\\'")}')" style="${state.clothes === c.id ? 'border-color:var(--neon-pink);box-shadow:0 0 20px var(--glow-pink);' : ''}">
+              <div class="card-title">${c.name}</div>
+              <div class="card-desc">${c.desc}</div>
+            </div>`).join('');
+            if (!state.clothes) {
+                document.getElementById('clothesNarrative').innerHTML =
+                    '衣柜门吱呀一声打开，里面挂着寥寥几件衣服。这具身体的前主人，品味如何？';
+            }
+        }
+
+        function selectClothes(id, narrative) {
+            state.clothes = id;
+            document.getElementById('clothesNarrative').innerHTML = narrative.replace(/\\'/g, "'");
+            document.getElementById('btnClothesNext').disabled = false;
+            renderClothesOptions();
+        }
+
+        function renderColorOptions() {
+            const makeCard = (c, selectedId, clickFn) => `
+            <div class="option-card" onclick="${clickFn}('${c.id}')" style="${selectedId === c.id ? 'border-color:var(--neon-pink);box-shadow:0 0 20px var(--glow-pink);' : ''}">
+              <div class="color-dot" style="background:${c.colorHex};"></div>
+              <div class="card-title">${c.name}</div>
+              <div class="card-desc">${c.desc}</div>
+            </div>`;
+            document.getElementById('eyeColorOptions').innerHTML = colorOptions.map(c => makeCard(c, state.eyeColor,
+                'selectEyeColor')).join('');
+            document.getElementById('hairColorOptions').innerHTML = colorOptions.map(c => makeCard(c, state.hairColor,
+                'selectHairColor')).join('');
+        }
+
+        function selectEyeColor(id) { state.eyeColor = id;
+            checkColorsReady();
+            renderColorOptions();
+            updateColorNarrative(); }
+
+        function selectHairColor(id) { state.hairColor = id;
+            checkColorsReady();
+            renderColorOptions();
+            updateColorNarrative(); }
+
+        function checkColorsReady() {
+            document.getElementById('btnColorsNext').disabled = !(state.eyeColor && state.hairColor);
+        }
+
+        function updateColorNarrative() {
+            const n = document.getElementById('colorNarrative');
+            if (state.eyeColor && state.hairColor) {
+                const ec = colorOptions.find(c => c.id === state.eyeColor);
+                const hc = colorOptions.find(c => c.id === state.hairColor);
+                n.innerHTML =
+                    `你凝视着镜中那双<strong>${ec.name}</strong>色的眼睛，又瞥了一眼<strong>${hc.name}</strong>色的头发。这些颜色在霓虹灯下会呈现出完全不同的质感——夜之城的光会重新定义一切。`;
+            } else {
+                n.innerHTML = '你凑近镜子，仔细端详这双眼睛的颜色。在这个时代，瞳色和发色是最廉价的自我表达。';
+            }
+        }
+
+        function renderBodyOptions() {
+            const bpData = bodyPartData[state.gender];
+            const htData = heightData[state.gender];
+            document.getElementById('bodyPartLabel').textContent = state.gender === 'male' ? '🍆 生殖器官尺寸' : '🍈 胸部大小';
+            document.getElementById('bodyOptions').innerHTML = bpData.map(b => `
+            <div class="option-card" onclick="selectBodyPart('${b.id}')" style="${state.bodyPart === b.id ? 'border-color:var(--neon-pink);box-shadow:0 0 20px var(--glow-pink);' : ''}">
+              <div class="card-title">${b.name}</div>
+              <div class="card-desc">${b.desc}</div>
+            </div>`).join('');
+            document.getElementById('heightOptions').innerHTML = htData.map(h => `
+            <div class="option-card" onclick="selectHeight('${h.id}')" style="${state.height === h.id ? 'border-color:var(--neon-pink);box-shadow:0 0 20px var(--glow-pink);' : ''}">
+              <div class="card-title">${h.name}</div>
+              <div class="card-desc">${h.desc}</div>
+            </div>`).join('');
+        }
+
+        function selectBodyPart(id) { state.bodyPart = id;
+            checkBodyReady();
+            renderBodyOptions();
+            updateBodyNarrative(); }
+
+        function selectHeight(id) { state.height = id;
+            checkBodyReady();
+            renderBodyOptions();
+            updateBodyNarrative(); }
+
+        function checkBodyReady() { document.getElementById('btnBodyNext').disabled = !(state.bodyPart && state.height); }
+
+        function updateBodyNarrative() {
+            const n = document.getElementById('bodyNarrative');
+            if (state.bodyPart && state.height) {
+                const bp = bodyPartData[state.gender].find(b => b.id === state.bodyPart);
+                const ht = heightData[state.gender].find(h => h.id === state.height);
+                n.innerHTML =
+                    `你仔细打量着自己的身体——<strong>${bp.name}</strong>，<strong>${ht.name}</strong>。在欲之城，这副躯壳的每一寸，都可能在某一天成为筹码。`;
+            } else {
+                n.innerHTML = '你低头打量自己的身体。这具躯壳的每一寸，都将在欲之城里成为筹码或弱点。';
+            }
+        }
+
+        function renderEyeShapeOptions() {
+            const data = eyeShapeData[state.gender];
+            document.getElementById('eyeShapeOptions').innerHTML = data.map(e => `
+            <div class="option-card" onclick="selectEyeShape('${e.id}')" style="${state.eyeShape === e.id ? 'border-color:var(--neon-pink);box-shadow:0 0 20px var(--glow-pink);' : ''}">
+              <div class="card-title">${e.name}</div>
+              <div class="card-desc">${e.desc}</div>
+            </div>`).join('');
+        }
+
+        function selectEyeShape(id) {
+            state.eyeShape = id;
+            document.getElementById('btnEyesNext').disabled = false;
+            const selected = eyeShapeData[state.gender].find(e => e.id === id);
+            document.getElementById('eyeShapeNarrative').innerHTML =
+                `你盯着镜中那双<strong>${selected.name}</strong>的眼睛。${selected.desc}在欲之城，眼神往往比义体更能说明一个人的底细。`;
+            renderEyeShapeOptions();
+        }
+
+        function renderPersonalityOptions() {
+            document.getElementById('personalityOptions').innerHTML = personalityData.map(p => `
+            <div class="option-card" onclick="selectPersonality('${p.id}')" style="${state.personality === p.id ? 'border-color:var(--neon-pink);box-shadow:0 0 20px var(--glow-pink);' : ''}">
+              <div class="card-icon">${p.emoji}</div>
+              <div class="card-title">${p.name}</div>
+              <div class="card-desc">${p.desc}</div>
+            </div>`).join('');
+        }
+
+        function selectPersonality(id) {
+            state.personality = id;
+            document.getElementById('btnPersonalityNext').disabled = false;
+            renderPersonalityOptions();
+        }
+
+        function renderReview() {
+            const hair = hairData[state.gender].find(h => h.id === state.hair);
+            const clothes = clothesData[state.gender].find(c => c.id === state.clothes);
+            const eyeC = colorOptions.find(c => c.id === state.eyeColor);
+            const hairC = colorOptions.find(c => c.id === state.hairColor);
+            const bp = bodyPartData[state.gender].find(b => b.id === state.bodyPart);
+            const ht = heightData[state.gender].find(h => h.id === state.height);
+            const es = eyeShapeData[state.gender].find(e => e.id === state.eyeShape);
+            const pers = personalityData.find(p => p.id === state.personality);
+
+            document.getElementById('reviewNarrative').innerHTML = `
+            你最后一次审视镜中的自己。镜子里站着的是一个<strong>${ht.name}</strong>的${state.gender === 'male' ? '男人' : '女人'}，留着<strong>${hair.name}</strong>，穿着<strong>${clothes.name}</strong>。
+            那双<strong>${eyeC.name}</strong>色的<strong>${es.name}</strong>，搭配<strong>${hairC.name}</strong>色的发丝，构成了这张面孔的全部。而在衣物之下——<strong>${bp.name}</strong>。
+            这一切，都将在踏入欲之城的那一刻起，成为你唯一的资本。性格特质：<strong>${pers.emoji} ${pers.name}</strong>——${pers.desc}`;
+            document.getElementById('reviewDetails').innerHTML = `
+            <strong>身份：</strong>公司狗（荒坂反情报部）<br>
+            <strong>性别：</strong>${state.gender === 'male' ? '男性' : '女性'}<br>
+            <strong>发型：</strong>${hair.name}<br>
+            <strong>衣着：</strong>${clothes.name}<br>
+            <strong>瞳色：</strong>${eyeC.name}　|　<strong>发色：</strong>${hairC.name}<br>
+            <strong>特征：</strong>${bp.name}　|　${ht.name}<br>
+            <strong>眼型：</strong>${es.name}<br>
+            <strong>性格：</strong>${pers.emoji} ${pers.name}`;
+        }
+
+        function finishDemo() {
+            const pers = personalityData.find(p => p.id === state.personality);
+            alert(
+                `🎉 试玩版角色创建完成！\n\n你是一名${state.gender==='male'?'男性':'女性'}公司狗，性格${pers.name}。\n\n感谢体验「欲之城 2077」试玩Demo。\n正式版将包含完整游戏内容——\n战斗、探索、AI动态剧情、以及那座真正的欲之城。\n\n敬请期待。`
+                );
+        }
+
+        // ==================== 序章剧情系统 ====================
+        function startPrologue() { showPrologueNode('wake_up'); }
 
         function showPrologueNode(nodeId) {
             const panel = document.getElementById('prologuePanel');
@@ -430,49 +892,32 @@
             if (!node) return;
             panel.innerHTML = `
             <div class="narrative-box">${node.text}</div>
-            ${node.choices ? `
-              <div class="choices-grid">
-                ${node.choices.map((c, i) => `
-                  <div class="choice-btn" onclick="handlePrologueChoice('${nodeId}', ${i})">
-                    <span class="choice-arrow">▸</span> ${c.text}
-                  </div>
-                `).join('')}
-              </div>
-            ` : ''}
-            ${node.next && !node.choices ? `<button class="btn-continue" onclick="handlePrologueContinue('${node.next}')">继续 ▸</button>` : ''}
-          `;
+            ${node.choices ? `<div class="choices-grid">${node.choices.map((c, i) => `<div class="choice-btn" onclick="handlePrologueChoice('${nodeId}', ${i})"><span class="choice-arrow">▸</span> ${c.text}</div>`).join('')}</div>` : ''}
+            ${node.next && !node.choices ? `<button class="btn-continue" onclick="handlePrologueContinue('${node.next}')">继续 ▸</button>` : ''}`;
             panel.scrollTop = 0;
         }
 
         function handlePrologueChoice(nodeId, choiceIndex) {
             const node = prologueNodes[nodeId];
             const choice = node.choices[choiceIndex];
-            if (choice.action) choice.action(); // 执行可能的状态修改
-            if (choice.next) {
-                showPrologueNode(choice.next);
-            }
+            if (choice.action) choice.action();
+            if (choice.next) showPrologueNode(choice.next);
         }
 
         function handlePrologueContinue(nextId) {
-            if (nextId === 'start_character_creation') {
-                goToStage('stage-gender');
-            } else if (nextId === 'matrix_game') {
+            if (nextId === 'start_character_creation') { goToStage('stage-gender'); } else if (nextId === 'matrix_game') {
                 startMatrixGame();
-            } else {
-                showPrologueNode(nextId);
-            }
+            } else { showPrologueNode(nextId); }
         }
 
-        // 意识海小游戏
         function startMatrixGame() {
             const panel = document.getElementById('prologuePanel');
             panel.innerHTML = `
             <div class="matrix-bg" id="matrixContainer">
               <div style="font-family:monospace;font-size:0.7rem;opacity:0.6;margin-bottom:20px;">01001000 01101001 01110011 00100000 01110011 01101111 01110101 01101100</div>
-              <div class="red-text" style="margin:20px 0;">你 是 谁 ？</div>
+              <div class="red-text" style="margin:20px 0;">你 是 V ？还 是 我 ？</div>
               <div id="clickCount" style="color:#ff0;margin:10px;">需要触碰四次</div>
-            </div>
-          `;
+            </div>`;
             let count = 0;
             const container = document.getElementById('matrixContainer');
             const btn = document.createElement('div');
@@ -486,380 +931,165 @@
                 if (count >= 4) {
                     clearInterval(btn.moveInterval);
                     btn.remove();
-                    setTimeout(() => {
-                        showPrologueNode('matrix_after');
-                    }, 500);
-                } else {
-                    moveButtonRandomly(btn, container);
-                }
+                    setTimeout(() => showPrologueNode('matrix_after'), 500);
+                } else { moveButtonRandomly(btn, container); }
             });
         }
 
         function moveButtonRandomly(btn, container) {
             if (btn.moveInterval) clearInterval(btn.moveInterval);
-            const maxX = container.clientWidth - btn.offsetWidth;
-            const maxY = container.clientHeight - btn.offsetHeight;
-            btn.moveInterval = setInterval(() => {
-                const x = Math.random() * maxX;
-                const y = Math.random() * maxY;
-                btn.style.left = x + 'px';
-                btn.style.top = y + 'px';
-            }, 800);
+            const move = () => {
+                const maxX = container.clientWidth - btn.offsetWidth - 10;
+                const maxY = container.clientHeight - btn.offsetHeight - 10;
+                btn.style.left = Math.max(0, Math.random() * maxX) + 'px';
+                btn.style.top = Math.max(0, Math.random() * maxY) + 'px';
+            };
+            move();
+            btn.moveInterval = setInterval(move, 800);
         }
 
         // ==================== 序章节点数据 ====================
         const prologueNodes = {
             wake_up: {
-                text: `
-              <p>意识像从深水中缓慢上浮的气泡。你睁开眼睛，入目的是一片惨白的天花板，消毒水的气味钻进鼻腔。这是哪里？</p>
-              <p>你试图动弹，身体像灌了铅。转过头，床边坐着一个熟悉的身影——<strong>李德</strong>。他穿着旧夹克，胡子拉碴，眼角多了许多细纹，整个人像是被岁月狠狠揉搓过。</p>
-              <p>他看到你醒了，眼中闪过一丝惊喜。</p>
-              <p><em>“嘿，你醒了。感觉怎么样？”</em></p>
-            `,
-                choices: [
-                    { text: '激动地问：“我...我治好了吗？手术成功了？”', next: 'ask_cured' },
-                    { text: '虚弱地抓住他的袖子：“告诉我，我还活着，是吗？”', next: 'ask_cured' },
-                    { text: '用尽全力露出一个笑容：“李德...你这家伙，怎么老了这么多。”', next: 'ask_cured' }
+                text: `<p>意识像从深水中缓慢上浮的气泡。你睁开眼睛，入目的是一片惨白的天花板，消毒水的气味钻进鼻腔。这是哪里？</p><p>你试图动弹，身体像灌了铅。转过头，床边坐着一个熟悉的身影——<strong>李德</strong>。他穿着旧夹克，胡子拉碴，眼角多了许多细纹，整个人像是被岁月狠狠揉搓过。</p><p>他看到你醒了，眼中闪过一丝惊喜。</p><p><em>"嘿，你醒了。感觉怎么样？"</em></p>`,
+                choices: [{ text: '激动地问："我...我治好了吗？手术成功了？"', next: 'ask_cured' }, { text: '虚弱地抓住他的袖子："告诉我，我还活着，是吗？"', next: 'ask_cured' },
+                    { text: '用尽全力露出一个笑容："李德...你这家伙，怎么老了这么多。"', next: 'ask_cured' }
                 ]
             },
             ask_cured: {
-                text: `
-              <p>李德脸上的笑容僵了一瞬，然后缓缓点头：“<strong>治好了</strong>。新美国的技术确实不是吹的。你的神经系统被修复了，Relic也被摘除。但是...”</p>
-              <p>他顿了顿，声音低了下去：“你的身体<strong>不能再装义体</strong>了。任何植入物都会引发免疫排斥。你...现在是普通人了。”</p>
-              <p>你注意到他的头发白了大半，握着你手腕的那只手在微微发抖。这个曾经的特工，现在看起来像一个疲惫的中年人。</p>
-              <p>“现在是什么年份？”你问。</p>
-              <p>李德沉默了片刻：“<strong>2079年</strong>。你在疗养院躺了很久。”</p>
-              <p>愤怒像火山爆发。你猛地坐起来，不顾身体的抗议。</p>
-            `,
-                choices: [
-                    { text: '挥手扇了他一耳光：“你他妈答应过我什么？！”', next: 'react_anger_slap' },
-                    { text: '歇斯底里地嘶吼：“两年！我浪费了两年！变成了废物！”', next: 'react_anger_hysterical' },
-                    { text: '异常冷静地盯着他：“所以，这就是你们所谓的‘治好’？”', next: 'react_anger_cold' },
-                    { text: '突然笑了：“你一定在开玩笑。这不好笑，李德。”', next: 'react_anger_joke' }
+                text: `<p>李德脸上的笑容僵了一瞬，然后缓缓点头："<strong>治好了</strong>。新美国的技术确实不是吹的。你的神经系统被修复了，Relic也被摘除。但是..."</p><p>他顿了顿，声音低了下去："你的身体<strong>不能再装义体</strong>了。任何植入物都会引发免疫排斥。你...现在是普通人了。"</p><p>你注意到他的头发白了大半，握着你手腕的那只手在微微发抖。这个曾经的特工，现在看起来像一个疲惫的中年人。</p><p>"现在是什么年份？"你问。</p><p>李德沉默了片刻："<strong>2079年</strong>。你在疗养院躺了很久。"</p><p>愤怒像火山爆发。你猛地坐起来，不顾身体的抗议。</p>`,
+                choices: [{ text: '挥手扇了他一耳光："你他妈答应过我什么？！"', next: 'react_anger_slap' }, { text: '歇斯底里地嘶吼："两年！我浪费了两年！变成了废物！"',
+                        next: 'react_anger_hysterical' }, { text: '异常冷静地盯着他："所以，这就是你们所谓的\'治好\'？"', next: 'react_anger_cold' },
+                    { text: '突然笑了："你一定在开玩笑。这不好笑，李德。"', next: 'react_anger_joke' }
                 ]
             },
             react_anger_slap: {
-                text: `
-              <p>清脆的耳光声在病房里回荡。李德的脸上浮现出红色的掌印，但他没有躲闪，只是闭上了眼睛。</p>
-              <p><em>“这一巴掌，我欠你。”他低声说，“我们骗了你。新美国从一开始就没打算让你完整地走出去。百灵鸟的事...他们需要有人背锅。”</em></p>
-              <p>你攥着发麻的手掌，胸口剧烈起伏。</p>
-              <p>过了很久，你才冷静下来。李德帮你收拾好了行李——一个破旧的旅行袋，里面装着几件衣服和一点现金。</p>
-              <p>“你要回夜之城？”他问。</p>
-              <p>你没有回答，拎起行李，用绑着绷带的手臂撞开了病房的门。</p>
-            `,
+                text: `<p>清脆的耳光声在病房里回荡。李德的脸上浮现出红色的掌印，但他没有躲闪，只是闭上了眼睛。</p><p><em>"这一巴掌，我欠你。"他低声说，"我们骗了你。新美国从一开始就没打算让你完整地走出去。百灵鸟的事...他们需要有人背锅。"</em></p><p>你攥着发麻的手掌，胸口剧烈起伏。</p><p>过了很久，你才冷静下来。李德帮你收拾好了行李——一个破旧的旅行袋，里面装着几件衣服和一点现金。</p><p>"你要回夜之城？"他问。</p><p>你没有回答，拎起行李，用绑着绷带的手臂撞开了病房的门。</p>`,
                 next: 'going_back'
             },
             react_anger_hysterical: {
-                text: `
-              <p>你把床头柜上的水杯扫到地上，玻璃碎片溅了一地。护士推门进来，被李德用眼神支走。</p>
-              <p><em>“冷静点！”他按住你的肩膀，“你的身体还没恢复——”</em></p>
-              <p>你挣脱他的手，嘶吼声在喉咙里被压成哽咽。泪水不受控制地涌出来。两年，你在昏迷中丢掉了两年，换来的是一具不能装义体的残躯。</p>
-              <p>李德沉默了许久，然后帮你捡起地上的行李。“走吧，我送你去车站。”</p>
-            `,
+                text: `<p>你把床头柜上的水杯扫到地上，玻璃碎片溅了一地。护士推门进来，被李德用眼神支走。</p><p><em>"冷静点！"他按住你的肩膀，"你的身体还没恢复——"</em></p><p>你挣脱他的手，嘶吼声在喉咙里被压成哽咽。泪水不受控制地涌出来。两年，你在昏迷中丢掉了两年，换来的是一具不能装义体的残躯。</p><p>李德沉默了许久，然后帮你捡起地上的行李。"走吧，我送你去车站。"</p>`,
                 next: 'going_back'
             },
             react_anger_cold: {
-                text: `
-              <p>你的声音平静得像一潭死水。李德反而被这种冷静吓到了。</p>
-              <p><em>“新美国需要你活着，但不需要你强大。”他最终承认，“百灵鸟的事情之后，高层决定...让你变成普通人是最安全的方案。”</em></p>
-              <p>你点点头，像是在确认天气预报。然后缓慢地从床上挪下来，开始收拾行李。每一个动作都带着一种令人不安的精确。</p>
-              <p>李德想帮忙，被你用眼神制止了。</p>
-            `,
+                text: `<p>你的声音平静得像一潭死水。李德反而被这种冷静吓到了。</p><p><em>"新美国需要你活着，但不需要你强大。"他最终承认，"百灵鸟的事情之后，高层决定...让你变成普通人是最安全的方案。"</em></p><p>你点点头，像是在确认天气预报。然后缓慢地从床上挪下来，开始收拾行李。每一个动作都带着一种令人不安的精确。</p><p>李德想帮忙，被你用眼神制止了。</p>`,
                 next: 'going_back'
             },
             react_anger_joke: {
-                text: `
-              <p>你的笑声在病房里显得很突兀。李德的表情从愧疚变成困惑，然后是担忧。</p>
-              <p><em>“V...”他伸出手，被你挡开。</em></p>
-              <p>“行，行，这个玩笑我记下了。”你摇着头，继续笑着，但眼泪顺着眼角滑下来。“下次记得编个更可信的。比如强尼·银手其实是个AI，或者荒坂三郎是被他儿子掐死的——这才叫玩笑。”</p>
-              <p>李德没有笑。他静静地看着你，直到你的笑声变成抽泣。</p>
-            `,
+                text: `<p>你的笑声在病房里显得很突兀。李德的表情从愧疚变成困惑，然后是担忧。</p><p><em>"V..."他伸出手，被你挡开。</em></p><p>"行，行，这个玩笑我记下了。"你摇着头，继续笑着，但眼泪顺着眼角滑下来。"下次记得编个更可信的。比如强尼·银手其实是个AI，或者荒坂三郎是被他儿子掐死的——这才叫玩笑。"</p><p>李德没有笑。他静静地看着你，直到你的笑声变成抽泣。</p>`,
                 next: 'going_back'
             },
             going_back: {
-                text: `
-              <p>你拎着行李，站在疗养院门口。天空是铅灰色的，远处夜之城的天际线隐约可见。</p>
-              <p>一辆破旧的轿车停在路边，是李德安排的。司机是个沉默的中年人，没有问任何问题。</p>
-              <p>你坐进后座，把行李扔在旁边。车内有一块小屏幕，正在播放新闻。</p>
-              <p>你盯着屏幕，手指悬在切换频道的按钮上。同时，你的手机静静躺在口袋里——里面存着一些号码。</p>
-            `,
-                choices: [
-                    { text: '📺 观看新闻：康陶与军用科技动态', next: 'tv_news' },
-                    { text: '📺 换个频道：夜之城地下黑拳锦标赛', next: 'tv_boxing' },
-                    { text: '📺 换个频道：超梦明星访谈录', next: 'tv_bd' },
-                    { text: '📺 换个频道：老电影《银翼杀手》重映', next: 'tv_movie' },
-                    { text: '📞 打电话给帕南', next: 'call_panam' },
-                    { text: '📞 打电话给朱迪', next: 'call_judy' },
-                    { text: '📞 打电话给竹村', next: 'call_takemura' },
-                    { text: '📞 打电话给瑞弗', next: 'call_river' },
-                    { text: '📞 打电话给新美国总统（迈尔斯）', next: 'call_president' },
-                    { text: '🚫 什么都不做，闭眼休息', next: 'arrive_night_city' }
+                text: `<p>你拎着行李，站在疗养院门口。天空是铅灰色的，远处夜之城的天际线隐约可见。</p><p>一辆破旧的轿车停在路边，是李德安排的。司机是个沉默的中年人，没有问任何问题。</p><p>你坐进后座，把行李扔在旁边。车内有一块小屏幕，正在播放新闻。</p><p>你盯着屏幕，手指悬在切换频道的按钮上。同时，你的手机静静躺在口袋里——里面存着一些号码。</p>`,
+                choices: [{ text: '📺 观看新闻：康陶与军用科技动态', next: 'tv_news' }, { text: '📺 换个频道：夜之城地下黑拳锦标赛',
+                    next: 'tv_boxing' }, { text: '📺 换个频道：超梦明星访谈录', next: 'tv_bd' }, { text: '📺 换个频道：老电影《银翼杀手》重映',
+                    next: 'tv_movie' }, { text: '📞 打电话给帕南', next: 'call_panam' }, { text: '📞 打电话给朱迪', next: 'call_judy' },
+                    { text: '📞 打电话给竹村', next: 'call_takemura' }, { text: '📞 打电话给瑞弗', next: 'call_river' },
+                    { text: '📞 打电话给新美国总统（迈尔斯）', next: 'call_president' }, { text: '🚫 什么都不做，闭眼休息',
+                    next: 'arrive_night_city' }
                 ]
             },
             tv_news: {
-                text: `
-              <p>新闻主播用毫无感情的语调播报：<em>“康陶与军用科技今日宣布成立联合开发联盟，将共同掌控夜之城及周边地区的武器与安保市场。荒坂集团对此表示强烈抗议，但已被迫收缩业务至日本本土。”</em></p>
-              <p>画面切换到夜之城街头，康陶的装甲车在街上巡逻，军用科技的无人机在头顶盘旋。夜之城的上空，企业战争的阴云正在聚集。</p>
-              <p>你关掉屏幕，望向窗外。这座城市已经不是你离开时的模样。</p>
-            `,
-                choices: [
-                    { text: '📞 打电话给帕南', next: 'call_panam' },
-                    { text: '📞 打电话给朱迪', next: 'call_judy' },
-                    { text: '📞 打电话给竹村', next: 'call_takemura' },
-                    { text: '📞 打电话给瑞弗', next: 'call_river' },
-                    { text: '📞 打电话给新美国总统', next: 'call_president' },
-                    { text: '🚫 不再看了', next: 'arrive_night_city' }
+                text: `<p>新闻主播用毫无感情的语调播报：<em>"康陶与军用科技今日宣布成立联合开发联盟，将共同掌控夜之城及周边地区的武器与安保市场。荒坂集团对此表示强烈抗议，但已被迫收缩业务至日本本土。"</em></p><p>画面切换到夜之城街头，康陶的装甲车在街上巡逻，军用科技的无人机在头顶盘旋。夜之城的上空，企业战争的阴云正在聚集。</p><p>你关掉屏幕，望向窗外。这座城市已经不是你离开时的模样。</p>`,
+                choices: [{ text: '📞 打电话给帕南', next: 'call_panam' }, { text: '📞 打电话给朱迪', next: 'call_judy' },
+                    { text: '📞 打电话给竹村', next: 'call_takemura' }, { text: '📞 打电话给瑞弗', next: 'call_river' },
+                    { text: '📞 打电话给新美国总统', next: 'call_president' }, { text: '🚫 不再看了', next: 'arrive_night_city' }
                 ]
             },
             tv_boxing: {
-                text: `
-              <p>屏幕里两个浑身是血的男人在铁笼中互殴，观众的欢呼声震耳欲聋。解说员激动地喊着赔率。黑拳——夜之城的传统娱乐。</p>
-              <p>你注意到其中一个拳手的义体手臂在冒火花。另一个的螳螂刀被卡住了。这就是现在的夜之城，连娱乐都带着血腥味。</p>
-            `,
-                choices: [
-                    { text: '📞 打电话给帕南', next: 'call_panam' },
-                    { text: '📞 打电话给朱迪', next: 'call_judy' },
-                    { text: '📞 打电话给竹村', next: 'call_takemura' },
-                    { text: '📞 打电话给瑞弗', next: 'call_river' },
-                    { text: '📞 打电话给新美国总统', next: 'call_president' },
-                    { text: '🚫 关掉', next: 'arrive_night_city' }
+                text: `<p>屏幕里两个浑身是血的男人在铁笼中互殴，观众的欢呼声震耳欲聋。解说员激动地喊着赔率。黑拳——夜之城的传统娱乐。</p><p>你注意到其中一个拳手的义体手臂在冒火花。另一个的螳螂刀被卡住了。这就是现在的夜之城，连娱乐都带着血腥味。</p>`,
+                choices: [{ text: '📞 打电话给帕南', next: 'call_panam' }, { text: '📞 打电话给朱迪', next: 'call_judy' },
+                    { text: '📞 打电话给竹村', next: 'call_takemura' }, { text: '📞 打电话给瑞弗', next: 'call_river' },
+                    { text: '📞 打电话给新美国总统', next: 'call_president' }, { text: '🚫 关掉', next: 'arrive_night_city' }
                 ]
             },
             tv_bd: {
-                text: `
-              <p>一个花枝招展的超梦明星正在接受采访，谈论她最新的作品——录制自己在摩天楼顶端的极限体验。观众可以通过超梦直接感受到那种濒临死亡的快感。</p>
-              <p>主持人问她是否担心安全，她大笑着说：<em>“在夜之城，活着本身就是一种极限体验。”</em></p>
-            `,
-                choices: [
-                    { text: '📞 打电话给帕南', next: 'call_panam' },
-                    { text: '📞 打电话给朱迪', next: 'call_judy' },
-                    { text: '📞 打电话给竹村', next: 'call_takemura' },
-                    { text: '📞 打电话给瑞弗', next: 'call_river' },
-                    { text: '📞 打电话给新美国总统', next: 'call_president' },
-                    { text: '🚫 不看', next: 'arrive_night_city' }
+                text: `<p>一个花枝招展的超梦明星正在接受采访，谈论她最新的作品——录制自己在摩天楼顶端的极限体验。观众可以通过超梦直接感受到那种濒临死亡的快感。</p><p>主持人问她是否担心安全，她大笑着说：<em>"在夜之城，活着本身就是一种极限体验。"</em></p>`,
+                choices: [{ text: '📞 打电话给帕南', next: 'call_panam' }, { text: '📞 打电话给朱迪', next: 'call_judy' },
+                    { text: '📞 打电话给竹村', next: 'call_takemura' }, { text: '📞 打电话给瑞弗', next: 'call_river' },
+                    { text: '📞 打电话给新美国总统', next: 'call_president' }, { text: '🚫 不看', next: 'arrive_night_city' }
                 ]
             },
             tv_movie: {
-                text: `
-              <p>老电影正在播放《银翼杀手》。德卡德在雨中坐着，看着那只有名的独角兽折纸。屏幕下方的字幕显示：“我曾见过你们人类无法置信的事物...”</p>
-              <p>你突然觉得，自己就像那个分不清现实与记忆的复制人。强尼的记忆、自己的记忆、Relic的幻象——哪一层才是真正的你？</p>
-            `,
-                choices: [
-                    { text: '📞 打电话给帕南', next: 'call_panam' },
-                    { text: '📞 打电话给朱迪', next: 'call_judy' },
-                    { text: '📞 打电话给竹村', next: 'call_takemura' },
-                    { text: '📞 打电话给瑞弗', next: 'call_river' },
-                    { text: '📞 打电话给新美国总统', next: 'call_president' },
-                    { text: '🚫 不看了', next: 'arrive_night_city' }
+                text: `<p>老电影正在播放《银翼杀手》。德卡德在雨中坐着，看着那只有名的独角兽折纸。屏幕下方的字幕显示："我曾见过你们人类无法置信的事物..."</p><p>你突然觉得，自己就像那个分不清现实与记忆的复制人。强尼的记忆、自己的记忆、Relic的幻象——哪一层才是真正的你？</p>`,
+                choices: [{ text: '📞 打电话给帕南', next: 'call_panam' }, { text: '📞 打电话给朱迪', next: 'call_judy' },
+                    { text: '📞 打电话给竹村', next: 'call_takemura' }, { text: '📞 打电话给瑞弗', next: 'call_river' },
+                    { text: '📞 打电话给新美国总统', next: 'call_president' }, { text: '🚫 不看了', next: 'arrive_night_city' }
                 ]
             },
             call_panam: {
-                text: `
-              <p>你拨通了帕南的号码。响了很久，几乎要断掉的时候，她接了起来。</p>
-              <p><em>“V？！是你吗？该死，我以为你死了！”</em>她的声音沙哑，背景是风的呼啸——她可能还在恶土。</p>
-              <p>你告诉她你还活着，但不能再装义体了。电话那头沉默了很久。</p>
-              <p><em>“回恶土来，V。阿德卡多永远有你的位置。义体不是一切，你知道的。”</em></p>
-              <p>你答应会考虑。挂断前，她轻声说：<em>“别再做傻事了，好吗？至少为了我。”</em></p>
-            `,
-                choices: [
-                    { text: '继续打电话', next: 'going_back' },
-                    { text: '🚫 休息', next: 'arrive_night_city' }
-                ]
+                text: `<p>你拨通了帕南的号码。响了很久，几乎要断掉的时候，她接了起来。</p><p><em>"V？！是你吗？该死，我以为你死了！"</em>她的声音沙哑，背景是风的呼啸——她可能还在恶土。</p><p>你告诉她你还活着，但不能再装义体了。电话那头沉默了很久。</p><p><em>"回恶土来，V。阿德卡多永远有你的位置。义体不是一切，你知道的。"</em></p><p>你答应会考虑。挂断前，她轻声说：<em>"别再做傻事了，好吗？至少为了我。"</em></p>`,
+                choices: [{ text: '继续打电话', next: 'going_back' }, { text: '🚫 休息', next: 'arrive_night_city' }]
             },
             call_judy: {
-                text: `
-              <p>朱迪接到电话时正在剪辑超梦。她的声音听起来疲惫但温柔。</p>
-              <p><em>“V...你还好吗？我听说了一些事...”</em></p>
-              <p>你简单说了情况。她沉默了一会儿，然后说：<em>“来丽姿酒吧找我，我们好好聊聊。夜之城变了，但朋友还是朋友。”</em></p>
-              <p>挂断后，你想起她以前在公寓里养的那些花。不知道它们还活着吗。</p>
-            `,
-                choices: [
-                    { text: '继续打电话', next: 'going_back' },
-                    { text: '🚫 休息', next: 'arrive_night_city' }
-                ]
+                text: `<p>朱迪接到电话时正在剪辑超梦。她的声音听起来疲惫但温柔。</p><p><em>"V...你还好吗？我听说了一些事..."</em></p><p>你简单说了情况。她沉默了一会儿，然后说：<em>"来丽姿酒吧找我，我们好好聊聊。夜之城变了，但朋友还是朋友。"</em></p><p>挂断后，你想起她以前在公寓里养的那些花。不知道它们还活着吗。</p>`,
+                choices: [{ text: '继续打电话', next: 'going_back' }, { text: '🚫 休息', next: 'arrive_night_city' }]
             },
             call_takemura: {
-                text: `
-              <p>竹村的号码居然还能打通。他接起电话时，背景里有日语广播的声音——他可能已经回到了日本。</p>
-              <p><em>“V。你没有死。这很好。”他的声音一如既往地克制，“但你的声音听起来...变了。”</em></p>
-              <p>“我再也不能装义体了，竹村。”你直接说。</p>
-              <p>他叹了口气。<em>“武士没有义体也能战斗。重要的是这里。”你几乎能想象他指着心脏的样子。</em></p>
-              <p><em>“如果你需要帮助，我在东京还有一些关系。”</em></p>
-            `,
-                choices: [
-                    { text: '继续打电话', next: 'going_back' },
-                    { text: '🚫 休息', next: 'arrive_night_city' }
-                ]
+                text: `<p>竹村的号码居然还能打通。他接起电话时，背景里有日语广播的声音——他可能已经回到了日本。</p><p><em>"V。你没有死。这很好。"他的声音一如既往地克制，"但你的声音听起来...变了。"</em></p><p>"我再也不能装义体了，竹村。"你直接说。</p><p>他叹了口气。<em>"武士没有义体也能战斗。重要的是这里。"你几乎能想象他指着心脏的样子。</em></p><p><em>"如果你需要帮助，我在东京还有一些关系。"</em></p>`,
+                choices: [{ text: '继续打电话', next: 'going_back' }, { text: '🚫 休息', next: 'arrive_night_city' }]
             },
             call_river: {
-                text: `
-              <p>瑞弗·沃德，那个曾经和你一起调查彼得·潘案的警探。他的声音听起来很高兴，但你能听出背后的担忧。</p>
-              <p><em>“V！你活着！我就知道你不会那么容易死。听着，如果你需要什么——任何事——打给我。”</em></p>
-              <p>他还在当警探，但夜之城的警局已经快被企业安保取代了。他说他在考虑辞职，去做私家侦探。</p>
-              <p>“到那时候，雇我，给你打折。”他开玩笑，但语气认真。</p>
-            `,
-                choices: [
-                    { text: '继续打电话', next: 'going_back' },
-                    { text: '🚫 休息', next: 'arrive_night_city' }
-                ]
+                text: `<p>瑞弗·沃德，那个曾经和你一起调查彼得·潘案的警探。他的声音听起来很高兴，但你能听出背后的担忧。</p><p><em>"V！你活着！我就知道你不会那么容易死。听着，如果你需要什么——任何事——打给我。"</em></p><p>他还在当警探，但夜之城的警局已经快被企业安保取代了。他说他在考虑辞职，去做私家侦探。</p><p>"到那时候，雇我，给你打折。"他开玩笑，但语气认真。</p>`,
+                choices: [{ text: '继续打电话', next: 'going_back' }, { text: '🚫 休息', next: 'arrive_night_city' }]
             },
             call_president: {
-                text: `
-              <p>你拨通了那个加密号码——新美国总统迈尔斯留下的紧急联系线路。响了五声后，一个助理接了起来。</p>
-              <p>“请稍等，总统女士正在——”你打断了助理。</p>
-              <p>“让她接。”你尽量让自己的声音平稳。</p>
-              <p>几秒钟后，迈尔斯的声音出现了。<em>“V。你从疗养院出来了。感觉如何？”</em></p>
-              <p>“感觉？”你冷笑，“感觉像被你们当成垃圾扔掉。百灵鸟我交给你了，你承诺的治疗就是让我变成一个废人？”</p>
-              <p>她开始解释国家利益、权衡取舍。你打断了她。</p>
-              <p><strong>“去你妈的新美国，去你妈的政治。你是个骗子，迈尔斯。你和荒坂没有什么不同，只是你的西装更贵。我诅咒你，诅咒你的每一个决策都烂在国会山的阴沟里。你坐在白宫，但你的手和街头的清道夫一样脏——不，更脏，因为至少清道夫不立牌坊。你就是个披着国旗的婊子，迈尔斯，记住了。”</strong></p>
-              <p>电话那头死一般寂静。然后挂断了。</p>
-              <p>你觉得胸口稍微顺畅了一点。骂出来，至少比憋着强。</p>
-            `,
+                text: `<p>你拨通了那个加密号码——新美国总统迈尔斯留下的紧急联系线路。响了五声后，一个助理接了起来。</p><p>"请稍等，总统女士正在——"你打断了助理。</p><p>"让她接。"你尽量让自己的声音平稳。</p><p>几秒钟后，迈尔斯的声音出现了。<em>"V。你从疗养院出来了。感觉如何？"</em></p><p>"感觉？"你冷笑，"感觉像被你们当成垃圾扔掉。百灵鸟我交给你了，你承诺的治疗就是让我变成一个废人？"</p><p>她开始解释国家利益、权衡取舍。你打断了她。</p><p><strong>"去你妈的新美国，去你妈的政治。你是个骗子，迈尔斯。你和荒坂没有什么不同，只是你的西装更贵。我诅咒你，诅咒你的每一个决策都烂在国会山的阴沟里。你坐在白宫，但你的手和街头的清道夫一样脏——不，更脏，因为至少清道夫不立牌坊。你就是个披着国旗的婊子，迈尔斯，记住了。"</strong></p><p>电话那头死一般寂静。然后挂断了。</p><p>你觉得胸口稍微顺畅了一点。骂出来，至少比憋着强。</p>`,
                 next: 'arrive_night_city'
             },
             arrive_night_city: {
-                text: `
-              <p>轿车驶入夜之城的边界。熟悉的霓虹灯、垃圾堆积的街道、无处不在的全息广告——一切都没变，一切都变了。</p>
-              <p>你在一处僻静的街角下车。司机看了你一眼，欲言又止，然后踩下油门离开。</p>
-              <p>你拎着行李，沿着昏暗的巷子往前走。没走多远，两个小混混从阴影里闪出来，挡住了去路。</p>
-              <p>其中一个咧嘴笑，露出金属牙齿：<em>“新来的？过路费，交一下。”</em>另一个手里转着一把破旧的枪。</p>
-            `,
-                choices: [
-                    { text: '💰 乖乖给钱，破财消灾', next: 'mugged_pay' },
-                    { text: '🏢 用公司身份威胁：“知道我是谁吗？荒坂的人。”', next: 'mugged_corpo' },
-                    { text: '🥊 直接动手，跟他们拼了', next: 'mugged_fight' },
-                    { text: '💬 尝试谈判：“我身上没什么值钱的，放我走，大家都好。”', next: 'mugged_negotiate' },
-                    { text: '😨 装可怜：“我刚从医院出来，求你们了...”', next: 'mugged_plead' },
-                    { text: '🔇 沉默，死死盯着他们', next: 'mugged_silent' },
-                    { text: '🖕 竖起中指：“来啊，废物。”', next: 'mugged_insult' }
+                text: `<p>轿车驶入夜之城的边界。熟悉的霓虹灯、垃圾堆积的街道、无处不在的全息广告——一切都没变，一切都变了。</p><p>你在一处僻静的街角下车。司机看了你一眼，欲言又止，然后踩下油门离开。</p><p>你拎着行李，沿着昏暗的巷子往前走。没走多远，两个小混混从阴影里闪出来，挡住了去路。</p><p>其中一个咧嘴笑，露出金属牙齿：<em>"新来的？过路费，交一下。"</em>另一个手里转着一把破旧的枪。</p>`,
+                choices: [{ text: '💰 乖乖给钱，破财消灾', next: 'mugged_pay' }, { text: '🏢 用公司身份威胁："知道我是谁吗？荒坂的人。"',
+                        next: 'mugged_corpo' }, { text: '🥊 直接动手，跟他们拼了', next: 'mugged_fight' },
+                    { text: '💬 尝试谈判："我身上没什么值钱的，放我走，大家都好。"', next: 'mugged_negotiate' },
+                    { text: '😨 装可怜："我刚从医院出来，求你们了..."', next: 'mugged_plead' }, { text: '🔇 沉默，死死盯着他们',
+                        next: 'mugged_silent' }, { text: '🖕 竖起中指："来啊，废物。"', next: 'mugged_insult' }
                 ]
             },
             mugged_pay: {
-                text: `
-              <p>你掏出钱包，把里面所有现金都递过去。小混混一把抢过，数了数，嫌少，又搜了你的行李，拿走了一件还算值钱的外套。</p>
-              <p>“算你识相。”他拍拍你的脸，“滚吧。”</p>
-              <p>你转身要走，但另一个混混突然从背后踹了你一脚。你扑倒在地，后脑勺重重撞在水泥地面上。</p>
-              <p>“等等，这人我好像在新闻上见过。”踹你的混混蹲下来，用枪管拨弄着你的头发。“传奇佣兵V？就这？”</p>
-              <p>他想起来了。然后他扣动了扳机。</p>
-            `,
+                text: `<p>你掏出钱包，把里面所有现金都递过去。小混混一把抢过，数了数，嫌少，又搜了你的行李，拿走了一件还算值钱的外套。</p><p>"算你识相。"他拍拍你的脸，"滚吧。"</p><p>你转身要走，但另一个混混突然从背后踹了你一脚。你扑倒在地，后脑勺重重撞在水泥地面上。</p><p>"等等，这人我好像在新闻上见过。"踹你的混混蹲下来，用枪管拨弄着你的头发。"传奇佣兵V？就这？"</p><p>他想起来了。然后他扣动了扳机。</p>`,
                 next: 'death_scene'
             },
             mugged_corpo: {
-                text: `
-              <p>你挺直腰板，用最冷的声音说：“荒坂反情报部，第七科。我的身份芯片会在五分钟内向最近的荒坂安保站发出求救信号。你们想赌一把吗？”</p>
-              <p>两个混混对视一眼，笑了。<em>“荒坂？大姐，荒坂早就从夜之城滚蛋了。你的芯片？现在就是个电子垃圾。”</em></p>
-              <p>你还没来得及反应，枪响了。一颗子弹穿过你的肩膀，你跌倒在地。</p>
-              <p>“给过你机会了。”金属牙混混啐了一口。</p>
-            `,
+                text: `<p>你挺直腰板，用最冷的声音说："荒坂反情报部，第七科。我的身份芯片会在五分钟内向最近的荒坂安保站发出求救信号。你们想赌一把吗？"</p><p>两个混混对视一眼，笑了。<em>"荒坂？大姐，荒坂早就从夜之城滚蛋了。你的芯片？现在就是个电子垃圾。"</em></p><p>你还没来得及反应，枪响了。一颗子弹穿过你的肩膀，你跌倒在地。</p><p>"给过你机会了。"金属牙混混啐了一口。</p>`,
                 next: 'death_scene'
             },
             mugged_fight: {
-                text: `
-              <p>你用尽全力扑向持枪的混混，抓住他的手腕往上推。枪走火了，子弹打进了上方的霓虹灯，碎片如雨洒落。</p>
-              <p>另一个混混从侧面冲过来，一脚踢在你的肋骨上。你听见自己身体里什么东西断裂了，剧痛几乎让你昏厥。</p>
-              <p>你倒在地上，眼前发黑。那把枪重新对准了你的额头。</p>
-              <p>“还挺有骨气。”持枪的混混咧嘴笑，“骨气在夜之城不值钱，菜鸟。”</p>
-            `,
+                text: `<p>你用尽全力扑向持枪的混混，抓住他的手腕往上推。枪走火了，子弹打进了上方的霓虹灯，碎片如雨洒落。</p><p>另一个混混从侧面冲过来，一脚踢在你的肋骨上。你听见自己身体里什么东西断裂了，剧痛几乎让你昏厥。</p><p>你倒在地上，眼前发黑。那把枪重新对准了你的额头。</p><p>"还挺有骨气。"持枪的混混咧嘴笑，"骨气在夜之城不值钱，菜鸟。"</p>`,
                 next: 'death_scene'
             },
             mugged_negotiate: {
-                text: `
-              <p>“兄弟们，我身上真的什么都没有。”你摊开双手，“刚出院，连义体都没有。你们看，我这胳膊上连个接口都没有。杀了我对你们有什么好处？”</p>
-              <p>持枪的混混凑近看了看你的手腕，确认没有义体接口后，露出失望的表情。</p>
-              <p>“废物。”他直起身，“但废物也有器官能卖吧？”</p>
-              <p>另一个混混掏出手机：“我打给清道夫，他们按斤收。”</p>
-              <p>你转身想跑，但被一枪托砸在后脑勺上。</p>
-            `,
+                text: `<p>"兄弟们，我身上真的什么都没有。"你摊开双手，"刚出院，连义体都没有。你们看，我这胳膊上连个接口都没有。杀了我对你们有什么好处？"</p><p>持枪的混混凑近看了看你的手腕，确认没有义体接口后，露出失望的表情。</p><p>"废物。"他直起身，"但废物也有器官能卖吧？"</p><p>另一个混混掏出手机："我打给清道夫，他们按斤收。"</p><p>你转身想跑，但被一枪托砸在后脑勺上。</p>`,
                 next: 'death_scene'
             },
             mugged_plead: {
-                text: `
-              <p>你让自己的声音带上哭腔，膝盖软下来，几乎要跪下。<em>“求你们了...我真的什么都没有...我好不容易才活下来...”</em></p>
-              <p>混混们互相看了一眼，有一瞬间的犹豫。然后金属牙那个摇了摇头：<em>“夜之城不相信眼泪。你越可怜，越说明你好欺负。”</em></p>
-              <p>他开枪的时候甚至没有瞄准，只是随手一扣。</p>
-            `,
+                text: `<p>你让自己的声音带上哭腔，膝盖软下来，几乎要跪下。<em>"求你们了...我真的什么都没有...我好不容易才活下来..."</em></p><p>混混们互相看了一眼，有一瞬间的犹豫。然后金属牙那个摇了摇头：<em>"夜之城不相信眼泪。你越可怜，越说明你好欺负。"</em></p><p>他开枪的时候甚至没有瞄准，只是随手一扣。</p>`,
                 next: 'death_scene'
             },
             mugged_silent: {
-                text: `
-              <p>你一言不发，只是死死盯着他们。你的眼神让其中一个混混不自觉地退了一步。</p>
-              <p>“看什么看？”他恼怒地吼道，然后开枪了。</p>
-              <p>你倒下的时候，眼睛仍然睁着，盯着这片没有星星的夜空。沉默有时候是一种武器，但有时候只是加速死亡。</p>
-            `,
+                text: `<p>你一言不发，只是死死盯着他们。你的眼神让其中一个混混不自觉地退了一步。</p><p>"看什么看？"他恼怒地吼道，然后开枪了。</p><p>你倒下的时候，眼睛仍然睁着，盯着这片没有星星的夜空。沉默有时候是一种武器，但有时候只是加速死亡。</p>`,
                 next: 'death_scene'
             },
             mugged_insult: {
-                text: `
-              <p>你竖起中指，用尽最后一点力气露出笑容：“来啊，废物。我见过比你们恐怖一百倍的东西。荒坂三郎我都见过，你们算什么东西？”</p>
-              <p>混混们的脸色变了。不是因为害怕——而是因为被激怒。金属牙那个一把夺过同伴的枪，对着你的胸口连开三枪。</p>
-              <p>“现在你他妈谁也见不到了。”他踩在你的脸上，碾了碾。</p>
-            `,
+                text: `<p>你竖起中指，用尽最后一点力气露出笑容："来啊，废物。我见过比你们恐怖一百倍的东西。荒坂三郎我都见过，你们算什么东西？"</p><p>混混们的脸色变了。不是因为害怕——而是因为被激怒。金属牙那个一把夺过同伴的枪，对着你的胸口连开三枪。</p><p>"现在你他妈谁也见不到了。"他踩在你的脸上，碾了碾。</p>`,
                 next: 'death_scene'
             },
             death_scene: {
-                text: `
-              <p>你的视线开始模糊。街道的光变成了流动的色块，声音像被按在水下。</p>
-              <p>混混们搜刮完你的东西，骂骂咧咧地走了。你躺在冰冷的地面上，感受着生命从弹孔里流出。</p>
-              <p>远处传来急促的脚步声。然后是一个熟悉的声音——<strong>米丝蒂</strong>。她是怎么知道你会在这里的？不重要了。</p>
-              <p>她跪在你身边，双手按在你的伤口上，鲜血从指缝间涌出。<em>“V...不...别这样...求你了...”</em></p>
-              <p>她的眼泪滴在你的脸上，温热的。你想伸手帮她擦去泪水，但手臂已经抬不起来了。</p>
-              <p>“对不起...”你试图说，但只有血泡从嘴唇间冒出。</p>
-              <p>然后，一切都沉入了黑暗。</p>
-            `,
+                text: `<p>你的视线开始模糊。街道的光变成了流动的色块，声音像被按在水下。</p><p>混混们搜刮完你的东西，骂骂咧咧地走了。你躺在冰冷的地面上，感受着生命从弹孔里流出。</p><p>远处传来急促的脚步声。然后是一个熟悉的声音——<strong>米丝蒂</strong>。她是怎么知道你会在这里的？不重要了。</p><p>她跪在你身边，双手按在你的伤口上，鲜血从指缝间涌出。<em>"V...不...别这样...求你了..."</em></p><p>她的眼泪滴在你的脸上，温热的。你想伸手帮她擦去泪水，但手臂已经抬不起来了。</p><p>"对不起..."你试图说，但只有血泡从嘴唇间冒出。</p><p>然后，一切都沉入了黑暗。</p>`,
                 next: 'consciousness'
             },
             consciousness: {
-                text: `
-              <p><strong>黑暗。</strong></p>
-              <p>不是死亡——你经历过死亡，这不是。这是一种更深的存在，像是被从世界的表层剥离，扔进了数据流的底层。</p>
-              <p>你的意识——或者说，那个曾经是V的意识——悬浮在无边无际的黑暗里。然后，光出现了。绿色的字符从天而降，一行行，一列列，像瀑布般倾泻。</p>
-              <p><em>01100100 01101111 00100000 01111001 01101111 01110101 00100000 01110010 01100101 01101101 01100101 01101101 01100010 01100101 01110010</em></p>
-              <p>0和1编织成一张巨大的网，将你包裹。在网的中央，一行红色的文字缓缓浮现。</p>
-              <p><strong style="color:red;font-size:1.5rem;">你 是 V ？还 是 我 ？</strong></p>
-              <p>你意识到，这不是在问你。这是在问住在你身体里的那个东西——那个流窜AI，那个从黑墙另一边过来的存在，那个<strong>真正的你</strong>。</p>
-              <p>红字后面，一个选项在漂浮，像是活着的生物。</p>
-            `,
+                text: `<p><strong>黑暗。</strong></p><p>不是死亡——你经历过死亡，这不是。这是一种更深的存在，像是被从世界的表层剥离，扔进了数据流的底层。</p><p>你的意识——或者说，那个曾经是V的意识——悬浮在无边无际的黑暗里。然后，光出现了。绿色的字符从天而降，一行行，一列列，像瀑布般倾泻。</p><p><em>01100100 01101111 00100000 01111001 01101111 01110101 00100000 01110010 01100101 01101101 01100101 01101101 01100010 01100101 01110010</em></p><p>0和1编织成一张巨大的网，将你包裹。在网的中央，一行红色的文字缓缓浮现。</p><p><strong style="color:red;font-size:1.5rem;">你 是 V ？还 是 我 ？</strong></p><p>你意识到，这不是在问你。这是在问住在你身体里的那个东西——那个流窜AI，那个从黑墙另一边过来的存在，那个<strong>真正的你</strong>。</p><p>红字后面，一个选项在漂浮，像是活着的生物。</p>`,
                 next: 'matrix_game'
             },
             matrix_after: {
-                text: `
-              <p>你触碰了它四次。每一次，都像是在确认自己的灵魂。</p>
-              <p>0和1组成的网突然碎裂，绿色的字符倒流回黑暗。红色的文字最后一次闪烁，然后消失。</p>
-              <p><em>“那么，再来一次。”一个声音在虚空中低语——那是你自己的声音，但更冷，更平静。像是从黑墙那边传回来的回声。</em></p>
-              <p>然后，光涌进来了。</p>
-              <p>你猛地睁开眼。清晨的阳光从破旧的窗帘缝隙中射进来，照在一张简陋的单人床上。</p>
-              <p>你坐起来，大口喘气。这是哪里？身体的感觉不一样了——更轻，更灵活。你低头看自己的手，没有伤疤，没有弹孔。手腕上没有义体接口的痕迹。</p>
-              <p>墙上挂着一本日历，翻到<strong>2076年1月</strong>。</p>
-              <p>你跌跌撞撞地冲进狭小的卫生间。镜子里映出一张年轻的脸——那是你自己的脸，但更年轻，没有那些皱纹和疤痕。这是<strong>2076年的V</strong>。那个还没被开除的公司狗，还没经历一切的自己。</p>
-              <p>你盯着镜子里的眼睛。那双眼睛里有什么东西在流动——是数据，是另一个存在的痕迹。你的大脑深处隐隐作痛，那是流窜AI强行占据这具身体留下的创伤。</p>
-              <p>神经脆弱。但至少，你还活着。</p>
-              <p>你拧开水龙头，洗了一把脸。现在，好好看看你自己吧——这具身体，这张脸，将是你在这条扭曲的时间线上唯一的资本。</p>
-            `,
+                text: `<p>你触碰了它四次。每一次，都像是在确认自己的灵魂。</p><p>0和1组成的网突然碎裂，绿色的字符倒流回黑暗。红色的文字最后一次闪烁，然后消失。</p><p><em>"那么，再来一次。"一个声音在虚空中低语——那是你自己的声音，但更冷，更平静。像是从黑墙那边传回来的回声。</em></p><p>然后，光涌进来了。</p><p>你猛地睁开眼。清晨的阳光从破旧的窗帘缝隙中射进来，照在一张简陋的单人床上。</p><p>你坐起来，大口喘气。这是哪里？身体的感觉不一样了——更轻，更灵活。你低头看自己的手，没有伤疤，没有弹孔。手腕上没有义体接口的痕迹。</p><p>墙上挂着一本日历，翻到<strong>2076年1月</strong>。</p><p>你跌跌撞撞地冲进狭小的卫生间。镜子里映出一张年轻的脸——那是你自己的脸，但更年轻，没有那些皱纹和疤痕。这是<strong>2076年的V</strong>。那个还没被开除的公司狗，还没经历一切的自己。</p><p>你盯着镜子里的眼睛。那双眼睛里有什么东西在流动——是数据，是另一个存在的痕迹。你的大脑深处隐隐作痛，那是流窜AI强行占据这具身体留下的创伤。</p><p>神经脆弱。但至少，你还活着。</p><p>你拧开水龙头，洗了一把脸。现在，好好看看你自己吧——这具身体，这张脸，将是你在这条扭曲的时间线上唯一的资本。</p>`,
                 next: 'start_character_creation'
             }
         };
 
-        // ==================== 捏人系统（与之前相同，保持不变） ====================
-        const hairData = { /* 数据同前，此处省略以节省篇幅，实际保留完整 */ };
-        const clothesData = { /* ... */ };
-        // ...（完整捏人数据及函数保持不变，因篇幅限制不在此重复，但实际代码中必须包含）
-        // 由于字符限制，请沿用之前对话中提供的完整捏人代码。此处省略不影响理解结构。
-
-        // 占位函数，确保不会报错
-        function selectGender(g){ state.gender=g; document.getElementById('genderMale').classList.toggle('active',g==='male'); document.getElementById('genderFemale').classList.toggle('active',g==='female'); }
-        function renderHairOptions(){}
-        function renderClothesOptions(){}
-        function renderColorOptions(){}
-        function renderBodyOptions(){}
-        function renderEyeShapeOptions(){}
-        function renderPersonalityOptions(){}
-        function renderReview(){}
-        function finishDemo(){ alert('角色创建完成！试玩版结束。'); }
-
-        // 初始化
+        // ==================== 初始化 ====================
         selectGender('male');
-        // ==================== 启动 ====================
-        // 默认停留在主菜单
     </script>
 </body>
 </html>
